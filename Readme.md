@@ -8,9 +8,9 @@ This project shows how to containerize a **.NET 10 Minimal API** using a multi-s
 
 The `Dockerfile` is split into two distinct stages: **Preparation** (Build) and **Runtime**.
 
-### 1. Preparation Stage (SDK)
 
 ```dockerfile
+# 1. Preparation Stage (SDK)
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS preparation
 WORKDIR /app
 COPY *.csproj .
@@ -18,17 +18,7 @@ RUN dotnet restore
 COPY . .
 RUN dotnet publish -c Release -o ./out
 
-```
-
-* We use the full **.NET 10 SDK**  to build the app.
-
-* **Layer Optimization:** We copy the `.csproj` and run `dotnet restore` *before* copying the rest of the code. This allows Docker to cache your NuGet packages
-
-* **Publishing:** The `dotnet publish` command compiles the app into a production-ready set of files inside the `/app/out` folder.
-
-### 2. Runtime Stage (ASP.NET)
-
-```dockerfile
+# Runtime uses file made during preparation 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
 COPY --from=preparation /app/out .
@@ -37,6 +27,11 @@ EXPOSE 8080
 ENTRYPOINT ["dotnet", "containerapi.dll"]
 
 ```
+
+
+* **Layer Optimization:** We copy the `.csproj` and run `dotnet restore` *before* copying the rest of the code. This allows Docker to cache your NuGet packages
+
+* **Publishing:** The `dotnet publish` command compiles the app into a production-ready set of files inside the `/app/out` folder.
 
 * **Why:** we use `Multi-stage` building we switch to the **ASP.NET Runtime** image. It is significantly smaller and more secure for production.
 

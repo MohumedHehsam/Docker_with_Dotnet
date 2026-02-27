@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("containerapi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+304bc6f7d8fe9f5b7dc4e1e1dd8815f8f6484aad")]
 [assembly: System.Reflection.AssemblyProductAttribute("containerapi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("containerapi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
