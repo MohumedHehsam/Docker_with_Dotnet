@@ -58,7 +58,7 @@ Run the following command to start the container and map your local port `80` to
 docker run -d -p 80:8080  my-minimal-api
 
 ```
-
+### you can also use my image directly -> https://hub.docker.com/repository/docker/mohumed2004/containerized_minimal_api/general
 ---
 
 ## ✅ Verifying the Deployment
